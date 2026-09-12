@@ -1,0 +1,35 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+
+/ {
+    /* マウスクリックの動作定義 */
+    behaviors {
+        m_lclk: mouse_left_click {
+            compatible = "zmk,behavior-mouse-key-press";
+            #binding-cells = <0>;
+            usage-page = <0x09>;
+            usage-id = <0x01>;
+        };
+        m_rclk: mouse_right_click {
+            compatible = "zmk,behavior-mouse-key-press";
+            #binding-cells = <0>;
+            usage-page = <0x09>;
+            usage-id = <0x02>;
+        };
+    };
+
+    /* デフォルトのキー割り当てベース（ZMK Studioで上書き可能） */
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &kp Q  &kp W  &kp E  &kp R  &kp T         &kp Y  &kp U  &kp I      &kp O    &kp P
+                &kp A  &kp S  &kp D  &kp F  &kp G         &kp H  &kp J  &kp K      &kp L    &kp MINUS
+                &kp Z  &kp X  &kp C  &kp V  &kp B         &kp N  &kp M  &kp COMMA  &kp DOT  &kp SLASH
+                                     &kp LCTRL &kp LALT &kp SPACE   &kp RET &m_lclk &m_rclk
+            >;
+        };
+    };
+};
